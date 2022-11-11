@@ -36,19 +36,8 @@ class FizzBuzzTest {
 	void FizzBuzztest1() {
 		FizzBuzz fizzBuzz = new FizzBuzz();
 		List<String> fizzBuzzList = fizzBuzz.createFizzBuzzList(16);
-		List<String> result = new ArrayList<>();
-		for (int i = 1; i <= 16; i++) {
-			if (i % 3 == 0 && i % 5 == 0) {
-				result.add("FizzBuzz");
-			} else if (i % 5 == 0) {
-				result.add("Buzz");
-			} else if (i % 3 == 0) {
-				result.add("Fizz");
-			} else {
-				result.add("" + i);
-			}
-		}
+		List<String> stringList =List.of("1","2","Fizz","4","Buzz","Fizz","7","8","Fizz","Buzz","11","Fizz","13","14","FizzBuzz","16"); 
 	
-		assertIterableEquals(fizzBuzzList, result);
+		assertIterableEquals(fizzBuzzList, stringList);
 	}
 }
