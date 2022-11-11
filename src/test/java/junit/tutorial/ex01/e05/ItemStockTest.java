@@ -50,6 +50,8 @@ class ItemStockTest {
 	void getNumtest4() {
 		ItemStock itemStock = new ItemStock();
 		Item item = new Item(null,0);
+		item.setName("book");
+		item.setPrice(100);
 		itemStock.add(item);
 		itemStock.add(item);
 		int result = itemStock.getNum(item);
