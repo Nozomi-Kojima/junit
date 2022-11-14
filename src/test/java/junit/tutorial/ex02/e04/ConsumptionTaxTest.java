@@ -55,6 +55,7 @@ class ConsumptionTaxTest {
 		ConsumptionTax contax = new ConsumptionTax(tax);
 		int inputprice = contax.apply(input);
 		assertThat(expectedValue).isEqualTo(inputprice);
+		assertEquals(expectedValue, inputprice, "error not equals");
 	}
-
+	
 }

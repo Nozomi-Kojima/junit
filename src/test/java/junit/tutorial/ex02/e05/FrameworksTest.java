@@ -1,6 +1,7 @@
 package junit.tutorial.ex02.e05;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -100,6 +101,25 @@ class FrameworksTest {
 		assertFalse(result,"error:not false");
 		
 	}
-
+	@ParameterizedTest
+	 @CsvSource({
+			"true,GlassFish,Oracle",
+		    "true,GlassFish,DB2",
+			"true,GlassFish, PostgreSQL",
+		    "true,GlassFish, MySQL",
+		    "true,JBoss,PostgreSQL",
+		    "true,JBoss,DB2",
+		    "true,Tomcat,MySQL",
+		    "false,JBoss,Oracle",
+		    "false,JBoss,MySQL",
+			"false,Tomcat,Oracle",
+		    "false,Tomcat,DB2",
+		    "false,Tomcat,PostgreSQL",
+	})
+	void SupportTest6(Boolean truth,ApplicationServer app, Database data) {
+		Frameworks frame = new Frameworks();
+		Boolean result = frame.isSupport(app, data);
+		assertEquals(truth, result, "error:not equals");
+	}
 
 }
