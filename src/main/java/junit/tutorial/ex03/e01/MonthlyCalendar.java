@@ -17,4 +17,9 @@ public class MonthlyCalendar {
 	public int getRemainingDays() {
 		return nowDate.lengthOfMonth() - nowDate.getDayOfMonth();
 	}
+
+	@Override
+	public String toString() {
+		return "MonthlyCalendar [nowDate=" + nowDate + "]";
+	}
 }
