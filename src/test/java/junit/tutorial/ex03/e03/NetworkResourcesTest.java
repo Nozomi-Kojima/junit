@@ -1,10 +1,10 @@
-package junit.tutorial.ex03.e02;
+package junit.tutorial.ex03.e03;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.doThrow;
 
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
 import org.junit.jupiter.api.AfterAll;
@@ -17,12 +17,14 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import junit.tutorial.ex03.e02.LogAnalyzer;
+import junit.tutorial.ex03.e02.LogLoader;
 @ExtendWith(MockitoExtension.class)
-class LogAnalyzerTest {
+class NetworkResourcesTest {
 	@InjectMocks
-	private LogAnalyzer logAnalyzer = new LogAnalyzer();
+	private NetworkResources netResource = new NetworkResources();
 	@Mock
-	private LogLoader loader;
+	private NetworkLoader netLoader;
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 	}
@@ -40,12 +42,11 @@ class LogAnalyzerTest {
 	}
 
 	@Test
-	void test() throws Exception{
-		doThrow(new IOException("モック例外"))
-		.when(loader).load("test");
-		AnalyzeException e = assertThrows(AnalyzeException.class, () -> logAnalyzer.analyze("test"));
-		Throwable throwable = e.getCause();
-		assertEquals("モック例外", throwable.getLocalizedMessage());
+	void networkResourceTest1() throws Exception {
+		String  message= "HelloWorld";
+		ByteArrayInputStream buff = new ByteArrayInputStream(message.getBytes());
+		doReturn(buff).when(netLoader).getInput();
+		assertEquals(message, netResource.load());
 	}
 
 }
